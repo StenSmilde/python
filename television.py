@@ -12,12 +12,18 @@ class Television:
         self.__previous_volume = None  # New variable to store the previous volume
 
     def power(self):
+        """
+        method to turn on or off tv
+        """
         if self.__status:
             self.__status = False
         else:
             self.__status = True
 
     def mute(self):
+        """
+        method to mute or unmute tv
+        """
         if self.__status:
             if self.__muted:
                 self.__muted = False
@@ -30,6 +36,9 @@ class Television:
                 self.__volume = 0
 
     def channel_up(self):
+        """
+        method to increase the channel
+        """
         if self.__status:
             if self.__channel == Television.MAX_CHANNEL:
                 self.__channel = Television.MIN_CHANNEL
@@ -37,6 +46,9 @@ class Television:
                 self.__channel += 1
 
     def channel_down(self):
+        """
+        method to decrease the channel
+        """
         if self.__status:
             if self.__channel == Television.MIN_CHANNEL:
                 self.__channel = Television.MAX_CHANNEL
@@ -44,6 +56,9 @@ class Television:
                 self.__channel -= 1
 
     def volume_up(self):
+        """
+        method to increase the volume
+        """
         if self.__status:
             if self.__muted:
                 if self.__previous_volume is not None:
@@ -56,6 +71,9 @@ class Television:
                     self.__volume += 1
 
     def volume_down(self):
+        """
+        method to decrease the volume
+        """
         if self.__status:
             if self.__muted:
                 if self.__previous_volume is not None:
@@ -68,4 +86,8 @@ class Television:
                     self.__volume -= 1
 
     def __str__(self):
+        """
+        method to show the tv status
+        :return: tv status
+        """
         return f'Power = {self.__status}, Channel = {self.__channel}, Volume = {self.__volume}'
