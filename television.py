@@ -4,12 +4,12 @@ class Television:
     MIN_CHANNEL = 0
     MAX_CHANNEL = 3
 
-    def __init__(self, status=False, muted=False, volume=MIN_VOLUME, channel=MIN_CHANNEL):
+    def __init__(self, status=False, muted=False, volume=MIN_VOLUME, channel=MIN_CHANNEL, previous_volume=None):
         self.__status = status
         self.__muted = muted
         self.__volume = volume
         self.__channel = channel
-        self.__previous_volume = None  # New variable to store the previous volume
+        self.__previous_volume = previous_volume  # Initialize __previous_volume
 
     def power(self):
         """
@@ -34,6 +34,7 @@ class Television:
                 self.__previous_volume = self.__volume  # Store current volume before muting
                 self.__muted = True
                 self.__volume = 0
+                # Do not set volume to 0 here
 
     def channel_up(self):
         """
@@ -61,14 +62,11 @@ class Television:
         """
         if self.__status:
             if self.__muted:
-                if self.__previous_volume is not None:
-                    self.__volume = self.__previous_volume  # Restore previous volume
-                    self.__previous_volume = None
+                self.mute()
+            if self.__volume == Television.MAX_VOLUME:
+                pass
             else:
-                if self.__volume == Television.MAX_VOLUME:
-                    pass
-                else:
-                    self.__volume += 1
+                self.__volume += 1
 
     def volume_down(self):
         """
@@ -76,14 +74,11 @@ class Television:
         """
         if self.__status:
             if self.__muted:
-                if self.__previous_volume is not None:
-                    self.__volume = self.__previous_volume  # Restore previous volume
-                    self.__previous_volume = None
+                self.mute()
+            if self.__volume == Television.MIN_VOLUME:
+                pass
             else:
-                if self.__volume == Television.MIN_VOLUME:
-                    pass
-                else:
-                    self.__volume -= 1
+                self.__volume -= 1
 
     def __str__(self):
         """

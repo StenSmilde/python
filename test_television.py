@@ -33,7 +33,7 @@ class Test:
         assert self.tv1.__str__() == 'Power = False, Channel = 0, Volume = 1'
 
         self.tv1.mute()
-        assert self.tv1.__str__() == 'Power = True, Channel = 0, Volume = 1'
+        assert self.tv1.__str__() == 'Power = False, Channel = 0, Volume = 1'
 
     def test_channel_up(self):
         self.tv1.channel_up()
