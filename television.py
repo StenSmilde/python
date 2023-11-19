@@ -11,7 +11,7 @@ class Television:
         self.__channel = channel
         self.__previous_volume = previous_volume  # Initialize __previous_volume
 
-    def power(self):
+    def power(self) -> None:
         """
         method to turn on or off tv
         """
@@ -20,7 +20,7 @@ class Television:
         else:
             self.__status = True
 
-    def mute(self):
+    def mute(self) -> None:
         """
         method to mute or unmute tv
         """
@@ -33,10 +33,9 @@ class Television:
             else:
                 self.__previous_volume = self.__volume  # Store current volume before muting
                 self.__muted = True
-                self.__volume = 0
-                # Do not set volume to 0 here
+                self.__volume = Television.MIN_VOLUME
 
-    def channel_up(self):
+    def channel_up(self) -> None:
         """
         method to increase the channel
         """
@@ -46,7 +45,7 @@ class Television:
             else:
                 self.__channel += 1
 
-    def channel_down(self):
+    def channel_down(self) -> None:
         """
         method to decrease the channel
         """
@@ -56,7 +55,7 @@ class Television:
             else:
                 self.__channel -= 1
 
-    def volume_up(self):
+    def volume_up(self) -> None:
         """
         method to increase the volume
         """
@@ -68,7 +67,7 @@ class Television:
             else:
                 self.__volume += 1
 
-    def volume_down(self):
+    def volume_down(self) -> None:
         """
         method to decrease the volume
         """
@@ -80,7 +79,7 @@ class Television:
             else:
                 self.__volume -= 1
 
-    def __str__(self):
+    def __str__(self) -> str:
         """
         method to show the tv status
         :return: tv status
